@@ -6,7 +6,7 @@
         </div>
         <div class="hidden md:flex items-center">
           {% if user.is_authenticated %}
-            <span class="text-gray-300 mr-4">Welcome, {{ user.username }}</span>
+            {% comment %} <span class="text-gray-300 mr-4">Welcome, {{ user.username }}</span> {% endcomment %}
             <a href="{% url 'main:logout' %}" class="text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">
               Logout
             </a>

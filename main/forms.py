@@ -6,7 +6,6 @@ from main.models import ProductEntry #MoodEntry,
 #         model = MoodEntry
 #         fields = ["mood", "feelings", "mood_intensity"]
 
-
 class ProductEntryForm(ModelForm):
     class Meta:
         model = ProductEntry

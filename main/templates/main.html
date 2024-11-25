@@ -50,15 +50,15 @@
       </a>
   </div> {% endcomment %}
   
-  {% if not mood_entries %}
+  {% if not product_entries %}
   <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
-      <img src="{% static 'image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
-      <p class="text-center text-gray-600 mt-4">Belum ada data mood pada mental health tracker.</p>
+      <img src="{% static 'static/image/sedih-banget.png' %}" alt="Sad face" class="w-32 h-32 mb-4"/>
+      <p class="text-center text-gray-600 mt-4">Belum ada data product pada katalog.</p>
   </div>
   {% else %}
   <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
-      {% for mood_entry in mood_entries %}
-          {% include 'card_mood.html' with mood_entry=mood_entry %}
+      {% for product_entry in product_entries %}
+          {% include 'card_product.html' with product_entry=product_entry %}
       {% endfor %}
   </div>
   {% endif %}
