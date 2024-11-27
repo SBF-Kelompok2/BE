@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Shopii</title>
+{% endblock meta %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gray-100 flex flex-col">
+    <a href="{% url 'main:show_main' %}" class="bg-gray-400 w-[70px] hover:bg-gray-600 text-white py-2 px-4 rounded">
+        Back
+    </a>
+    
+    <h2 class="text-2xl font-bold mb-4">Welcome to Your Profile, {{ user.username }}!</h2>
+    <h3>Your Information:</h3>
+    <li><strong>Last Login:</strong> {{ last_login }}</li>
+
+
+    <!-- Form for updating user profile -->
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="username">Username:</label>
+            {{ form.username }}
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" name="address" id="address" value="{{ address }}" />
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Update Profile</button>
+    </form>
+
+    <!-- Link to allow the user to log out -->
+    <a href="{% url 'main:logout' %}" class="bg-red-500 w-20 hover:bg-red-600 text-white py-2 px-4 rounded">
+        Logout
+      </a>
+</div>
+{% endblock content %}

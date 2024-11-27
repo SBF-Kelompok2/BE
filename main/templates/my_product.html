@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>My Products - Shopii</title>
+{% endblock meta %}
+{% block content %}
+{% include 'navbar.html' %}
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-gray-100 flex flex-col">
+  <a href="{% url 'main:show_main' %}" class="bg-gray-400 w-[70px] hover:bg-gray-600 text-white py-2 px-4 rounded">
+      Back
+  </a>
+  <h1 class="text-3xl font-bold mb-6">My Products</h1>
+  
+  <!-- Check if there are any products -->
+  {% if not product_entries %}
+  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+      <p class="text-center text-gray-600 mt-4">No products available in your catalog.</p>
+  </div>
+  {% else %}
+  <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 w-full">
+      {% for product_entry in product_entries %}
+          {% include 'card_product.html' with product_entry=product_entry %}
+      {% endfor %}
+  </div>
+  {% endif %}
+  
+  <!-- Add New Product Button -->
+  <div class="flex justify-end mt-6">
+    <a href="{% url 'main:create_product_entry' %}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+        Add New Product
+    </a>
+  </div>
+
+</div>
+{% endblock content %}

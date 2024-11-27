@@ -1,25 +1,16 @@
 from django.db import models
 import uuid
 
-# Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
 
-# class MoodEntry(models.Model):
-#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # tambahkan baris ini
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     mood = models.CharField(max_length=255)
-#     time = models.DateField(auto_now_add=True)
-#     feelings = models.TextField()
-#     mood_intensity = models.IntegerField()
+class UserData(models.Model):  
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userdata")
+    address = models.TextField(blank=True, null=True)
 
-#     @property
-#     def is_mood_strong(self):
-#         return self.mood_intensity > 5
-    
-class UserData(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    address = models.CharField(max_length=255)
+    def __str__(self):
+        return f"{self.user.username}'s Data"
+
 
 class ProductEntry(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # tambahkan baris ini
@@ -28,11 +19,8 @@ class ProductEntry(models.Model):
     product_desc = models.TextField()
     price = models.IntegerField()
 
-class Keranjang(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    jumlah_product = models.IntegerField()
-    
-
+    def __str__(self):
+        return f"{self.product_name} by {self.user.username}"
 
 """
 keranjang:
