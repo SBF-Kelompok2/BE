@@ -19,4 +19,8 @@ urlpatterns = [
     path('edit-product/<uuid:id>', edit_product, name='edit_product'),
     path('delete/<uuid:id>', delete_product, name='delete_product'), # sesuaikan dengan nama fungsi yang dibuat
     path('create-product-entry', create_product_entry, name='create_product_entry'),
+
+    path('cart/', views.show_cart, name='show_cart'),
+    path('cart/add/<uuid:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('cart/remove/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
 ]

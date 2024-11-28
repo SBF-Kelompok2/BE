@@ -7,7 +7,7 @@
         <div class="hidden md:flex items-center">
           {% if user.is_authenticated %}
             {% comment %} <span class="text-gray-300 mr-4">Welcome, {{ user.username }}</span> {% endcomment %}
-            <a class="text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-4">
+            <a href="{% url 'main:show_cart' %}" class="text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-4">
               My Cart
             </a>
             <a href="{% url 'main:my-product' %}" class="text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300 mr-4">
@@ -42,7 +42,7 @@
       <div class="pt-2 pb-3 space-y-1 mx-auto">
         {% if user.is_authenticated %}
           <span class="block text-gray-300 px-3 py-2">Welcome, {{ user.username }}</span>
-          <a class="block text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+          <a href="{% url 'main:show_cart' %}" class="block text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">
             My Cart
           </a>
           <a href="{% url 'main:my-product' %}" class="block text-center bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded transition duration-300">

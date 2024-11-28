@@ -32,7 +32,7 @@
         </a>
         
         <!-- Add to Cart Button -->
-        <a class="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 transition duration-300 shadow-md">
+        <a href="{% url 'main:add_to_cart' product_entry.id %}" class="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-2 transition duration-300 shadow-md">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6 2a1 1 0 000 2h1l1.68 8.396a3 3 0 003.22 2.396h6.4a3 3 0 003.22-2.396L21 4H6zm1.179 12a5.007 5.007 0 01-4.898 4.118A1 1 0 002 19h1.085a5.007 5.007 0 014.898-4.118A1 1 0 007.179 14z"/>
             </svg>

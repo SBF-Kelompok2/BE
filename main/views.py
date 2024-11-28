@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from main.forms import ProductEntryForm, CustomUserCreationForm, UserEditForm
-from main.models import ProductEntry, UserData, ProductEntry
+from main.models import ProductEntry, UserData, ProductEntry, Cart, CartItem
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.urls import reverse
@@ -167,3 +167,35 @@ def delete_product(request, id):
     product.delete()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
+
+
+@login_required
+def show_cart(request):
+    # Fetch or create the user's cart
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    context = {
+        "cart": cart,
+        "cart_items": cart.items.all(),
+        "total_price": sum(item.get_total_price() for item in cart.items.all()),
+    }
+    return render(request, "cart.html", context)
+
+@login_required
+def add_to_cart(request, product_id):
+    product = ProductEntry.objects.get(id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+
+    # Check if the product is already in the cart
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    if not created:
+        cart_item.quantity += 1
+    cart_item.save()
+
+    return redirect("main:show_cart")
+
+@login_required
+def remove_from_cart(request, item_id):
+    cart_item = CartItem.objects.get(id=item_id, cart__user=request.user)
+    cart_item.delete()
+    return redirect("main:show_cart")
